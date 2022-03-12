@@ -1,0 +1,89 @@
+================================================
+Grubb flies website: high level development plan
+================================================
+
+*** Homepage ***
+
+to be considered
+
+*** Stories app ***
+
+An app which allows several players to make stories out of different segments.
+
+The story begins with a number of participating players and an accordingly defined length (number of segments per player).
+
+In addition to segments the story can have a title and pre-defined characters.
+
+The story can be deleted at the end of play or saved for future reference.
+
+<< Note: during current development players will be associated with an instance of Story. In future I plan to decouple the two, so that a room containing players can choose to play different games during the same session. >>
+
+--- Models ---
+
+Story: the overall story, which contains instances of the other classes
+
+Players: includes info about players contributing to the story
+
+Segs: the body of the story segments
+
+Title: the story title
+
+Chars: story characters
+
+--- Views ---
+
+start: page where you can create a new story or join a current one using the story id. You input a player name on this page. you also choose the story settings
+
+<< future development plan: initially we develop a story with just segments, but we will add the ability to specify a title and characters later. >>
+
+create_story: a new story is created, the first player is created and the story id is returned so that other players can join. there is an option to proceed to the beginning of the story when all the desired players have joined.
+
+<< future development plan: this page displays all the participating players and is updated in real time (without refreshing the page). >>
+
+join_story: a page informing a player that they have successfully joined the story, and that they are waiting for the story to begin.
+
+<< future development: any player should be able to begin the story, not just the one who created it in the first place. This will require the ability to deal with simultaneous requests to begin. >>
+
+roadmap: for development purposes only. Shows what players will write what segments, add the title, choose characters, and any future additions.
+
+add_segment: a player inputs a story segment, then submits it
+
+wait: a player waits for other players to contribute. They are redirected automatically when it is time to move on to either a new contribution page or the finish page.
+
+finish: the final story
+
+<< future development plan: the final story is not revealed until all players are ready to see it. >>
+
+--- Templates ---
+
+start: a static page
+
+create_story: a static page
+
+join_story: a static page
+
+roadmap: displays all the players, all the segments (blank or filled in) and which player is to edit what
+
+add_segment: a static page
+
+wait: a static page
+
+finish: lists all the segments and what players contributed to what
+
+--- Style sheets ---
+
+to be considered
+
+--- Development plan ---
+
+Create the views with placeholder responses and set up url relationships.
+
+Write unit tests for the views.
+
+Write code for the views and make basic templates. Run tests until it works.
+
+Test operation of the website structure.
+
+Fill out templates with more detail. Make style sheets.
+
+Consider future development options.
