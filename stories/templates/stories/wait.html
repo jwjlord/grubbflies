@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <span> This is the wait page for story {{story_id}} </span> <br>
+    
+    <a href="{% url 'stories:add_segment' story_id 1 %}">
+        
+        Go to the next segment
+        
+    </a>
+    <br>
+    <a href="{% url 'stories:finish' story_id %}">
+        
+        Go to the finish
+        
+    </a>
+    
+</html>

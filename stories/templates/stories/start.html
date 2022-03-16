@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <a href = "{% url 'stories:create_story' %}">
+        
+        Create a new story
+        
+    </a><br>
+    
+    <span> Join an existing story </span><br>
+    
+    <form action="{% url 'stories:join_story' %}" method = "post">
+        {% csrf_token %}
+        <label for="story_id"> Story ID: </label>
+        <input type="number" name="story_id" id="story_id"/>
+        <input type="submit" value="Join!" />
+    </form>
+
+</html>
