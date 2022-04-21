@@ -2,12 +2,15 @@
 
 <html>
     
-    <span> This is the page to add segment {{segment_id}} to story {{story_id}} </span> <br>
+    <span> This is the page to add segment {{segment_id}} to story {{story_id}} </span> <br/>
     
-    <a href = "{% url 'stories:wait' story_id %}">
+    <form action="{% url 'stories:wait' story_id segment_id %}" method="POST">
         
-        Go to the wait page
+        {% csrf_token %}
+        <label> Add the next part of the story! </label> <br/>
+        <textarea id="segment_input" name="segment_input" rows="5" cols="30"></textarea> <br/>
+        <input type="submit" value="Submit" />
         
-    </a>
+    </form>
     
 </html>

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from random import randint
 
-#from .models import Story, Player, Segment
+from .models import Story, Player, Segment
 
 # note: the story id, player id, etc. will just be the primary keys in the database
 
@@ -20,7 +20,9 @@ def create_story(request):
 #    option to proceed with the story
 #    when that is chosen, create the necessary segments and allocate authors
 #    then redirect to the wait page
-    story_id = randint(0,100)
+
+    s = Story()
+    s.save()
     context = {'story_id': story_id}
     return render(request, 'stories/create_story.html', context)
 
@@ -41,18 +43,23 @@ def roadmap(request, story_id):
 def add_segment(request, story_id, segment_id):
 #    display the previous segment
 #    prompt input for the current segment
-#    button saves the segment and registers it as complete
 #    redirect to the wait page
     context = {'story_id': story_id, 'segment_id': segment_id}
     return render(request, 'stories/add_segment.html', context)
 
-def wait(request, story_id):
+def wait(request, story_id, segment_id):
+#    save the most recent segment
 #    there is a button to ask to proceed
 #    if not ready:
 #        return an error
 #    else:
 #        redirect to the next segment or to finish
-    context = {'story_id': story_id}
+    try:
+        segment_content = request.POST['segment_input']
+    except KeyError:
+        segment_content = "There are no segments yet"
+    next_segment = segment_id + 1
+    context = {'story_id': story_id, 'recent_segment': segment_content, 'segment_id': next_segment}
     return render(request, 'stories/wait.html', context)
 
 def finish(request, story_id):

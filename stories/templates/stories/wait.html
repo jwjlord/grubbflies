@@ -2,14 +2,18 @@
 
 <html>
     
-    <span> This is the wait page for story {{story_id}} </span> <br>
+    <span> This is the wait page for story {{story_id}} </span> <br/>
     
-    <a href="{% url 'stories:add_segment' story_id 1 %}">
+    <span> Here is the most recent segment: </span> <br/>
+
+    <p> {{recent_segment}} </p> <br/>
+    
+    <a href="{% url 'stories:add_segment' story_id segment_id %}">
         
         Go to the next segment
         
     </a>
-    <br>
+    <br/>
     <a href="{% url 'stories:finish' story_id %}">
         
         Go to the finish
